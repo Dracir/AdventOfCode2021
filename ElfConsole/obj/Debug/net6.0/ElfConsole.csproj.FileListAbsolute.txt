@@ -1,0 +1,12 @@
+/home/richard/Workspace/AdventOfCode2021/ElfConsole/bin/Debug/net6.0/ElfConsole.deps.json
+/home/richard/Workspace/AdventOfCode2021/ElfConsole/bin/Debug/net6.0/ElfConsole.dll
+/home/richard/Workspace/AdventOfCode2021/ElfConsole/bin/Debug/net6.0/ref/ElfConsole.dll
+/home/richard/Workspace/AdventOfCode2021/ElfConsole/bin/Debug/net6.0/ElfConsole.pdb
+/home/richard/Workspace/AdventOfCode2021/ElfConsole/obj/Debug/net6.0/ElfConsole.csproj.AssemblyReference.cache
+/home/richard/Workspace/AdventOfCode2021/ElfConsole/obj/Debug/net6.0/ElfConsole.GeneratedMSBuildEditorConfig.editorconfig
+/home/richard/Workspace/AdventOfCode2021/ElfConsole/obj/Debug/net6.0/ElfConsole.AssemblyInfoInputs.cache
+/home/richard/Workspace/AdventOfCode2021/ElfConsole/obj/Debug/net6.0/ElfConsole.AssemblyInfo.cs
+/home/richard/Workspace/AdventOfCode2021/ElfConsole/obj/Debug/net6.0/ElfConsole.csproj.CoreCompileInputs.cache
+/home/richard/Workspace/AdventOfCode2021/ElfConsole/obj/Debug/net6.0/ElfConsole.dll
+/home/richard/Workspace/AdventOfCode2021/ElfConsole/obj/Debug/net6.0/ref/ElfConsole.dll
+/home/richard/Workspace/AdventOfCode2021/ElfConsole/obj/Debug/net6.0/ElfConsole.pdb

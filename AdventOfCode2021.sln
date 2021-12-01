@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solver", "Solver\Solver.csproj", "{16ED241F-2CFB-4CD9-B145-3E430434C14E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{C75A0769-4174-41FE-A2AF-3C0C66334427}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElfConsole", "ElfConsole\ElfConsole.csproj", "{D0913060-811B-49BD-B8A9-83C9A4F87B60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16ED241F-2CFB-4CD9-B145-3E430434C14E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16ED241F-2CFB-4CD9-B145-3E430434C14E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16ED241F-2CFB-4CD9-B145-3E430434C14E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16ED241F-2CFB-4CD9-B145-3E430434C14E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C75A0769-4174-41FE-A2AF-3C0C66334427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C75A0769-4174-41FE-A2AF-3C0C66334427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C75A0769-4174-41FE-A2AF-3C0C66334427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C75A0769-4174-41FE-A2AF-3C0C66334427}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0913060-811B-49BD-B8A9-83C9A4F87B60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0913060-811B-49BD-B8A9-83C9A4F87B60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0913060-811B-49BD-B8A9-83C9A4F87B60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0913060-811B-49BD-B8A9-83C9A4F87B60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
