@@ -24,13 +24,38 @@ public static class ElfConsole
 		}
 	}
 
+	private static ConsoleColor CurrentForegroundColor;
 	public static ConsoleColor ForegroundColor
 	{
 		get => Console.ForegroundColor;
-		set => Console.ForegroundColor = value;
+		set
+		{
+			if (CurrentForegroundColor == value)
+				return;
+			Console.ForegroundColor = value;
+			CurrentForegroundColor = value;
+		}
 	}
 
-	public static void ResetColor() => Console.ResetColor();
+
+	private static ConsoleColor CurrentBackgroundColor;
+	public static ConsoleColor BackgroundColor
+	{
+		get => Console.BackgroundColor;
+		set
+		{
+			if (CurrentBackgroundColor == value)
+				return;
+			Console.BackgroundColor = value;
+			CurrentBackgroundColor = value;
+		}
+	}
+
+	public static void ResetColor()
+	{
+		BackgroundColor = ConsoleColor.Black;
+		ForegroundColor = ConsoleColor.White;
+	}
 
 	public static void WriteAtLine(string value, int line, int linesWidth = 0) => WriteAt(value, 0, line, linesWidth);
 

@@ -1,5 +1,7 @@
 using System.Text;
 using static UnicodeCharacter;
+using Console = ElfConsole;
+
 public static class DrawingUtils
 {
 
@@ -9,32 +11,21 @@ public static class DrawingUtils
 	{
 		Console.BackgroundColor = backgroundColor;
 		Console.ForegroundColor = foregroundColor;
-		Console.CursorLeft = x;
-		Console.CursorTop = y;
 
 		var strBuilder = new StringBuilder(w);
 		strBuilder.Append(BOX_CORNER_ROUNDED_TOP_LEFT + new String(BOX_HORIZONTAL, w - 2) + BOX_CORNER_ROUNDED_TOP_RIGHT);
 		strBuilder[TITLE_START_X] = BOX_CORNER_TOP_RIGHT;
 		strBuilder[TITLE_START_X + title.Length + 1] = BOX_CORNER_TOP_LEFT;
-		Console.Write(strBuilder);
+		Console.WriteAt(strBuilder.ToString(), x, y);
 
-		Console.CursorLeft = x + TITLE_START_X + 1;
 		Console.ForegroundColor = titleColor;
-		Console.Write(title);
+		Console.WriteAt(title.ToString(), x + TITLE_START_X + 1, y);
 
-		Console.CursorLeft = x;
 		Console.ForegroundColor = foregroundColor;
 
 		for (int i = y + 1; i < y + h; i++)
-		{
-			Console.CursorLeft = x;
-			Console.CursorTop = i;
-			Console.Write(BOX_VERTICAL + new String(' ', w - 2) + BOX_VERTICAL);
+			Console.WriteAt(BOX_VERTICAL + new String(' ', w - 2) + BOX_VERTICAL, x, i);
 
-		}
-
-		Console.CursorLeft = x;
-		Console.CursorTop = y + h;
-		Console.Write(BOX_CORNER_ROUNDED_BOTTOM_LEFT + new String(BOX_HORIZONTAL, w - 2) + BOX_CORNER_ROUNDED_BOTTOM_RIGHT);
+		Console.WriteAt(BOX_CORNER_ROUNDED_BOTTOM_LEFT + new String(BOX_HORIZONTAL, w - 2) + BOX_CORNER_ROUNDED_BOTTOM_RIGHT, x, y + h);
 	}
 }

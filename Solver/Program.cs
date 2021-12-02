@@ -6,7 +6,7 @@ using Console = ElfConsole;
 class Program
 {
 
-	private static int _currentDay = 1;
+	private static int _currentDay = 2;
 	private static int _currentPart = 2;
 	private static bool _useConsole = true;
 
@@ -23,8 +23,8 @@ class Program
 	{
 		System.Console.CursorVisible = false;
 
-		_days[_currentDay] = NewDay(_currentDay);
 		UpdateHeader(_currentDay, _days[_currentDay], _currentPart);
+		_days[_currentDay] = NewDay(_currentDay);
 
 		do
 		{
@@ -45,15 +45,15 @@ class Program
 			{
 				_currentDay++;
 				if (_currentDay > 25) _currentDay = 0;
-				_days[_currentDay] = NewDay(_currentDay);
 				UpdateHeader(_currentDay, _days[_currentDay], _currentPart);
+				_days[_currentDay] = NewDay(_currentDay);
 			}
 			else if (userInput.Key == ConsoleKey.LeftArrow)
 			{
 				_currentDay--;
 				if (_currentDay < 0) _currentDay = 25;
-				_days[_currentDay] = NewDay(_currentDay);
 				UpdateHeader(_currentDay, _days[_currentDay], _currentPart);
+				_days[_currentDay] = NewDay(_currentDay);
 			}
 			else if (userInput.Key == ConsoleKey.C)
 			{
@@ -61,7 +61,7 @@ class Program
 			}
 			else if (userInput.Key == ConsoleKey.Enter)
 			{
-				UpdateHeader(_currentDay, _days[_currentDay], _currentPart);
+				//UpdateHeader(_currentDay, _days[_currentDay], _currentPart);
 				StartDay(_currentDay);
 			}
 			else if (userInput.Key == ConsoleKey.Escape)
@@ -76,8 +76,8 @@ class Program
 	private static DayBase NewDay(int currentDay) => currentDay switch
 	{
 		1 => new Day1(),
-		/*2 => new Day2(),
-		3 => new Day3(),
+		2 => new Day2(),
+		/*3 => new Day3(),
 		4 => new Day4(),
 		5 => new Day5(),
 		6 => new Day6(),
