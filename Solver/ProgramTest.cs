@@ -10,8 +10,8 @@ public class ProgramTest
 		int bufferWidth = Console.BufferWidth;
 		int bufferHeight = Console.BufferHeight;
 
-		int windowWidth = Console.WindowWidth;
-		int windowHeight = Console.WindowHeight;
+		int windowWidth = Console.WindowWidth; //211
+		int windowHeight = Console.WindowHeight;//5
 		Console.OutputEncoding = Encoding.UTF8;
 
 		Console.WriteLine(bufferHeight);

@@ -4,11 +4,19 @@ using System.Collections.Generic;
 
 public class FormatedPrintedValue
 {
-	public readonly ConsoleColor _Color;
+	private ConsoleColor _color;
+	public ConsoleColor _Color
+	{
+		get => _color;
+		set => SetColor(value);
+	}
+
 
 	private readonly Point _position;
 	private int _width;
 	private string? Format;
+
+	private string? _currentValue;
 
 	public FormatedPrintedValue(Point position, int width, ConsoleColor color, string? format = null)
 	{
@@ -18,6 +26,15 @@ public class FormatedPrintedValue
 		Format = format;
 	}
 
+
+	private void SetColor(ConsoleColor color)
+	{
+		if (_color == color)
+			return;
+		_color = color;
+		if (_currentValue != null)
+			WriteString(_currentValue);
+	}
 
 	public void SetValue(int value)
 	{
@@ -53,7 +70,7 @@ public class FormatedPrintedValue
 
 	private void WriteString(string value)
 	{
-
+		_currentValue = value;
 		if (value.Length < _width)
 			value = value.PadRight(_width);
 		else if (value.Length > _width)

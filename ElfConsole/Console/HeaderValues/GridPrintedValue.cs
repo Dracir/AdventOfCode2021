@@ -15,14 +15,18 @@ public class GridPrintedValue
 			_arrayPrintedValues[i] = new ArrayPrintedValue(position + new Point(0, i), cellWidth, nbCells, cellSpacing, color, format);
 	}
 
+	public void SetColor(int x, int y, ConsoleColor color)
+	{
+		_arrayPrintedValues[y].SetColor(x, color);
+	}
 
 	public void SetValue(int[,] values)
 	{
-		for (int i = 0; i < MathF.Min(values.GetLength(0), _arrayPrintedValues.Length); i++)
+		for (int x = 0; x < MathF.Min(values.GetLength(1), _arrayPrintedValues.Length); x++)
 		{
-			var row = Enumerable.Range(0, values.GetLength(1))
-				.Select(x => values[i, x]).ToArray();
-			_arrayPrintedValues[i].SetValue(row);
+			var row = Enumerable.Range(0, values.GetLength(0))
+				.Select(y => values[y, x]).ToArray();
+			_arrayPrintedValues[x].SetValue(row);
 		}
 	}
 

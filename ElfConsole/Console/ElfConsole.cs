@@ -89,8 +89,10 @@ public static class ElfConsole
 	private static void WriteLine(string value, int x, int y)
 	{
 		var text = value;
+		if (x >= WriteRight)
+			return;
 		if (x + text.Length > WriteRight)
-			text = text.Substring(text.Length - Right - 1) + '…';
+			text = text.Substring(WriteRight - x - 1) + '…';
 
 		Position = new Point(x, y);
 		Console.WriteLine(text);
@@ -102,11 +104,11 @@ public static class ElfConsole
 	public static void SetTitle(int day, string title, int part)
 	{
 		//Console.ForegroundColor = ConsoleManager.Skin.FramesColor;
-		var line = new String('=', Width - 2); // ═ slow
+		var line = new String('═', Width - 2); // ═ slow
 
 		ForegroundColor = ConsoleColor.Gray;
-		WriteAtLine($"╔{line}╗", Height - 4);
-		for (int y = Height - 3; y < Height; y++)
+		WriteAtLine($"╔{line}╗", Height - 3);
+		for (int y = Height - 2; y < Height; y++)
 		{
 			WriteAt("║", 0, y);
 			WriteAt("║", Width - 1, y);
@@ -115,7 +117,7 @@ public static class ElfConsole
 
 		ForegroundColor = ConsoleColor.White;
 		var titleText = $" Day {day}: {title} - Part {part} ";
-		WriteAt(titleText, 2, Height - 4);
+		WriteAt(titleText, 2, Height - 3);
 
 		Console.ResetColor();
 	}

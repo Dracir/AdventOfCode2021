@@ -15,6 +15,11 @@ public class ArrayPrintedValue
 			_printedValues[i] = new FormatedPrintedValue(position + new Point(i * (cellWidth + cellSpacing), 0), cellWidth, color, format);
 	}
 
+	public void SetColor(int i, ConsoleColor color)
+	{
+		_printedValues[i]._Color = color;
+	}
+
 
 	public void SetValue(int[] value)
 	{

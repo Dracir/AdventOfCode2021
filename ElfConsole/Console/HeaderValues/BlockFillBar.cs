@@ -15,6 +15,8 @@ public class BlockFillBar
 	{
 		_width = width;
 		_style = style;
+		_position = position;
+		_Color = color;
 	}
 
 	public void SetValue(float value)

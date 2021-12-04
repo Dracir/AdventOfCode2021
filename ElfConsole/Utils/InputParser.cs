@@ -83,6 +83,36 @@ public static class InputParser
 		return grid;
 	}
 
+	//Exemple
+	//14 21 17 24  4
+	//10 16 15  9 19
+	//18  8 23 26 20
+	//22 11 13  6  5
+	//2  0 12  3  7
+	public static int[,] ParseIntGrid(string input, char lineSeparator, char? colSeparator)
+	{
+		var lines = input.Split(lineSeparator);
+		var grid = new int[lines[0].TrimEnd().Length, lines.Length];
+
+		for (int y = 0; y < lines.Length; y++)
+		{
+			var line = lines[y].TrimEnd();
+			if (colSeparator != null)
+			{
+				var lineValues = line.Split((char)colSeparator);
+				for (int x = 0; x < lineValues.Length; x++)
+					grid[x, y] = int.Parse(lineValues[x]);
+			}
+			else
+			{
+				for (int x = 0; x < line.Length; x++)
+					grid[x, y] = line[x];
+			}
+		}
+
+		return grid;
+	}
+
 	// -------------------------------------------
 	/**
 	Exemple: 
