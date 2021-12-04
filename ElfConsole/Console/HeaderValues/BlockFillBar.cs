@@ -3,27 +3,24 @@ using System.IO;
 using System.Collections.Generic;
 using static ValueToUTFBars;
 
-public class BlockFillBar : HeaderValue
+public class BlockFillBar
 {
+	public readonly ConsoleColor _Color;
+
+	private readonly Point _position;
 	private int _width;
 	private Styles _style;
 
-	public BlockFillBar(Point position, int width, ConsoleColor color, Styles style) : base(position, color)
+	public BlockFillBar(Point position, int width, ConsoleColor color, Styles style)
 	{
 		_width = width;
 		_style = style;
 	}
 
-	protected override int TotalWidth => _width;
-
-	public override void SetValue(int value)
-	{
-	}
-
-	public override void SetValue(float value)
+	public void SetValue(float value)
 	{
 		if (_width == 1)
-			WriteValue(ValueToUTFBars.GetChar(value, _style).ToString());
+			WriteString(ValueToUTFBars.GetChar(value, _style).ToString());
 		else
 		{
 			var chars = new Char[_width];
@@ -40,13 +37,24 @@ public class BlockFillBar : HeaderValue
 				else
 					chars[i - 1] = ValueToUTFBars.GetChar((value - leftPercent) / percentPerChar, _style);
 			}
-			WriteValue(new string(chars));
+			WriteString(new string(chars));
 		}
 	}
 
-
-	public override void SetValue(string value)
+	private void WriteString(string value)
 	{
+
+		if (value.Length < _width)
+			value = value.PadRight(_width);
+		else if (value.Length > _width)
+			value = value.ToString().Substring(0, _width);
+
+		var p = ElfConsole.Position;
+		ElfConsole.ForegroundColor = _Color;
+
+		ElfConsole.WriteAt(value, _position.X, _position.Y);
+
+		ElfConsole.Position = p;
 	}
 
 }

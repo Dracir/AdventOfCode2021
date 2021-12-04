@@ -20,6 +20,9 @@ public struct Point
 	public static Point operator *(Point pt, int multiplier)
 		=> new Point(pt.X * multiplier, pt.Y * multiplier);
 
+	public static Point operator +(Point a, Point b)
+		=> new Point(a.X + b.X, a.Y + b.Y);
+
 	public int DistanceManhattan(Point p2)
 	{
 		return Math.Abs(X - p2.X) + Math.Abs(Y - p2.Y);

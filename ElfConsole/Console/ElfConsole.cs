@@ -68,7 +68,7 @@ public static class ElfConsole
 				var lineStr = line;
 				if (linesWidth != 0)
 					lineStr = lineStr.PadRight(linesWidth);
-				y += WriteLine(lineStr, x, y);
+				WriteLine(lineStr, x, y++);
 			}
 		}
 		else
@@ -86,25 +86,15 @@ public static class ElfConsole
 		Console.Write(value);
 	}
 
-	private static int WriteLine(string value, int x, int y)
+	private static void WriteLine(string value, int x, int y)
 	{
-		int lines = 1;
-		foreach (var c in value)
-		{
-			if (y >= WriteHeight)
-				return lines;
-			if (x >= WriteWidth)
-			{
-				lines++;
-				y++;
-				x = 0;
-			}
-			Position = new Point(WriteLeft + x, WriteTop + y);
-			Console.Write(c);
-			x++;
-		}
+		var text = value;
+		if (x + text.Length > WriteRight)
+			text = text.Substring(text.Length - Right - 1) + '…';
 
-		return lines;
+		Position = new Point(x, y);
+		Console.WriteLine(text);
+
 	}
 	public static ConsoleKeyInfo ReadKey() => Console.ReadKey();
 	public static void Clear() => Console.Clear();

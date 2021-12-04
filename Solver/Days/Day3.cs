@@ -9,12 +9,19 @@ public class Day3 : DayBase
 {
 	public override long Part1(string input)
 	{
+		var p1Console = new Day3Console.P1();
+
 		var values = input.Split("\n");
 		var nbRepports = values.Length;
 
 		var oneCount = values.CountCharPerCol('1');
-		var gamma = BitArrayToBinary(oneCount.Select(x => x > nbRepports - x));
-		var epsilon = BitArrayToBinary(oneCount.Select(x => x < nbRepports - x));
+		p1Console.Set1Bits(oneCount, nbRepports);
+
+		var gammaBits = oneCount.Select(x => x > nbRepports - x);
+		var gamma = BitArrayToBinary(gammaBits);
+		var epsilonBits = oneCount.Select(x => x < nbRepports - x);
+		var epsilon = BitArrayToBinary(epsilonBits);
+		p1Console.SetGammaEpsilon(gammaBits, gamma, epsilonBits, epsilon);
 
 		return gamma * epsilon;
 	}

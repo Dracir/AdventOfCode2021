@@ -9,12 +9,12 @@ using static Point;
 public class Day2 : DayBase
 {
 
-	FormatedHeaderValue Horizontal;
-	FormatedHeaderValue Depth;
-	FormatedHeaderValue Aim;
+	FormatedPrintedValue Horizontal;
+	FormatedPrintedValue Depth;
+	FormatedPrintedValue Aim;
 
-	FormatedHeaderValue CmdHorizontal;
-	FormatedHeaderValue CmdDepth;
+	FormatedPrintedValue CmdHorizontal;
+	FormatedPrintedValue CmdDepth;
 
 	public Day2()
 	{
@@ -23,16 +23,16 @@ public class Day2 : DayBase
 		Console.WriteAt("Horizontal: ", 1, 1);
 		Console.WriteAt("Depth     : ", 1, 2);
 		Console.WriteAt("Aim       : ", 1, 3);
-		Horizontal = new FormatedHeaderValue(new Point(13, 1), 8, ConsoleColor.White);
-		Depth = new FormatedHeaderValue(new Point(13, 2), 8, ConsoleColor.White);
-		Aim = new FormatedHeaderValue(new Point(13, 3), 8, ConsoleColor.White);
+		Horizontal = new FormatedPrintedValue(new Point(13, 1), 8, ConsoleColor.White);
+		Depth = new FormatedPrintedValue(new Point(13, 2), 8, ConsoleColor.White);
+		Aim = new FormatedPrintedValue(new Point(13, 3), 8, ConsoleColor.White);
 
 		DrawingUtils.DrawBox(0, 5, 22, 3, "Command", ConsoleColor.Black, ConsoleColor.DarkRed, ConsoleColor.White);
 		Console.ForegroundColor = ConsoleColor.Gray;
 		Console.WriteAt("Horizontal: ", 1, 6);
 		Console.WriteAt("Depth     : ", 1, 7);
-		CmdHorizontal = new FormatedHeaderValue(new Point(13, 6), 8, ConsoleColor.White);
-		CmdDepth = new FormatedHeaderValue(new Point(13, 7), 8, ConsoleColor.White);
+		CmdHorizontal = new FormatedPrintedValue(new Point(13, 6), 8, ConsoleColor.White);
+		CmdDepth = new FormatedPrintedValue(new Point(13, 7), 8, ConsoleColor.White);
 	}
 
 	public override long Part1(string input)
