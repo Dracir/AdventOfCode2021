@@ -26,6 +26,25 @@ public static class IEnumerableExtentions
 		return accumulate;
 	}
 
+	public static IEnumerable<IEnumerable<T>> GroupWhile<T>(this IEnumerable<T> seq, Func<T, T, bool> condition)
+	{
+		T prev = seq.First();
+		List<T> list = new List<T>() { prev };
+
+		foreach (T item in seq.Skip(1))
+		{
+			if (condition(prev, item) == false)
+			{
+				yield return list;
+				list = new List<T>();
+			}
+			list.Add(item);
+			prev = item;
+		}
+
+		yield return list;
+	}
+
 	public static int Product<T>(this IEnumerable<T> enumerable, Func<T, int> func)
 	{
 		return enumerable.Aggregate(1, (mult, value) => mult * func(value));

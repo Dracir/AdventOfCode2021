@@ -221,8 +221,6 @@ public class Grid<T> : IGrid<T>
 	public void ApplyLine(Line line, Func<(T currentValue, Point position), T> valueChange)
 	{
 		foreach (var point in line.Points())
-		{
 			this[point] = valueChange((this[point], point));
-		}
 	}
 }

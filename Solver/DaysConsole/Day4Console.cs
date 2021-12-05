@@ -40,7 +40,7 @@ public static class Day4Console
 			var by = boardStartY + y * 6;
 			Console.ForegroundColor = ConsoleColor.DarkGreen;
 			Console.BackgroundColor = ConsoleColor.White;
-			Console.WriteAt($"Bingo{x},{y}", bx + 4, by);
+			Console.WriteLinesAt($"Bingo{x},{y}", bx + 4, by);
 			Console.BackgroundColor = ConsoleColor.Black;
 		}
 

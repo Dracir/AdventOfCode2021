@@ -54,7 +54,7 @@ public class BlockFillBar
 		var p = ElfConsole.Position;
 		ElfConsole.ForegroundColor = _Color;
 
-		ElfConsole.WriteAt(value, _position.X, _position.Y);
+		ElfConsole.WriteLinesAt(value, _position.X, _position.Y);
 
 		ElfConsole.Position = p;
 	}

@@ -76,9 +76,9 @@ public static class ElfConsole
 	}
 
 
-	public static void WriteAtLine(string value, int line, int linesWidth = 0) => WriteAt(value, 0, line, linesWidth);
+	public static void WriteLineAtLine(string value, int line, int linesWidth = 0) => WriteLinesAt(value, 0, line, linesWidth);
 
-	public static void WriteAt(string value, int x, int y, int linesWidth = 0)
+	public static void WriteLinesAt(string value, int x, int y, int linesWidth = 0)
 	{
 		if (value.Contains("\n"))
 		{
@@ -87,19 +87,19 @@ public static class ElfConsole
 				var lineStr = line;
 				if (linesWidth != 0)
 					lineStr = lineStr.PadRight(linesWidth);
-				WriteLine(lineStr, x, y++);
+				WriteLineAt(lineStr, x, y++);
 			}
 		}
 		else
 		{
 			if (linesWidth != 0)
-				WriteLine(value.PadRight(linesWidth), x, y);
+				WriteLineAt(value.PadRight(linesWidth), x, y);
 			else
-				WriteLine(value, x, y);
+				WriteLineAt(value, x, y);
 		}
 	}
 
-	public static void WriteAt(char value, int x, int y)
+	public static void WriteCharAt(char value, int x, int y)
 	{
 		if (x >= WriteRight || y >= WriteBottom || x < 0 || y < 0)
 			return;
@@ -108,7 +108,7 @@ public static class ElfConsole
 		Console.Write(value);
 	}
 
-	private static void WriteLine(string value, int x, int y)
+	public static void WriteLineAt(string value, int x, int y)
 	{
 		var text = value;
 		if (x >= WriteRight)
@@ -117,6 +117,7 @@ public static class ElfConsole
 			return;
 		if (x + text.Length > WriteRight)
 			text = text.Substring(WriteRight - x - 1) + '…';
+		File.AppendAllText("drawn.txt", $"({x},{y}) : {value}\n");
 
 		Position = new Point(x, y);
 		Console.WriteLine(text);
@@ -131,17 +132,17 @@ public static class ElfConsole
 		var line = new String('═', Width - 2); // ═ slow
 
 		ForegroundColor = ConsoleColor.Gray;
-		WriteAtLine($"╔{line}╗", Height - 3);
+		WriteLineAtLine($"╔{line}╗", Height - 3);
 		for (int y = Height - 2; y < Height; y++)
 		{
-			WriteAt("║", 0, y);
-			WriteAt("║", Width - 1, y);
+			WriteLinesAt("║", 0, y);
+			WriteLinesAt("║", Width - 1, y);
 
 		}
 
 		ForegroundColor = ConsoleColor.White;
 		var titleText = $" Day {day}: {title} - Part {part} ";
-		WriteAt(titleText, 2, Height - 3);
+		WriteLinesAt(titleText, 2, Height - 3);
 
 		Console.ResetColor();
 	}

@@ -17,16 +17,16 @@ public static class DrawingUtils
 		strBuilder.Append(BOX_CORNER_ROUNDED_TOP_LEFT + new String(BOX_HORIZONTAL, w - 2) + BOX_CORNER_ROUNDED_TOP_RIGHT);
 		strBuilder[TITLE_START_X] = BOX_CORNER_TOP_RIGHT;
 		strBuilder[TITLE_START_X + title.Length + 1] = BOX_CORNER_TOP_LEFT;
-		Console.WriteAt(strBuilder.ToString(), x, y);
+		Console.WriteLinesAt(strBuilder.ToString(), x, y);
 
 		Console.ForegroundColor = titleColor;
-		Console.WriteAt(title.ToString(), x + TITLE_START_X + 1, y);
+		Console.WriteLinesAt(title.ToString(), x + TITLE_START_X + 1, y);
 
 		Console.ForegroundColor = foregroundColor;
 
 		for (int i = y + 1; i < y + h - 1; i++)
-			Console.WriteAt(BOX_VERTICAL + new String(' ', w - 2) + BOX_VERTICAL, x, i);
+			Console.WriteLinesAt(BOX_VERTICAL + new String(' ', w - 2) + BOX_VERTICAL, x, i);
 
-		Console.WriteAt(BOX_CORNER_ROUNDED_BOTTOM_LEFT + new String(BOX_HORIZONTAL, w - 2) + BOX_CORNER_ROUNDED_BOTTOM_RIGHT, x, y + h - 1);
+		Console.WriteLinesAt(BOX_CORNER_ROUNDED_BOTTOM_LEFT + new String(BOX_HORIZONTAL, w - 2) + BOX_CORNER_ROUNDED_BOTTOM_RIGHT, x, y + h - 1);
 	}
 }

@@ -20,17 +20,17 @@ public class Day2 : DayBase
 	{
 		DrawingUtils.DrawBox(0, 0, 22, 4, "Course", ConsoleColor.Black, ConsoleColor.DarkBlue, ConsoleColor.White);
 		Console.ForegroundColor = ConsoleColor.Gray;
-		Console.WriteAt("Horizontal: ", 1, 1);
-		Console.WriteAt("Depth     : ", 1, 2);
-		Console.WriteAt("Aim       : ", 1, 3);
+		Console.WriteLinesAt("Horizontal: ", 1, 1);
+		Console.WriteLinesAt("Depth     : ", 1, 2);
+		Console.WriteLinesAt("Aim       : ", 1, 3);
 		Horizontal = new FormatedPrintedValue(new Point(13, 1), 8, ConsoleColor.White);
 		Depth = new FormatedPrintedValue(new Point(13, 2), 8, ConsoleColor.White);
 		Aim = new FormatedPrintedValue(new Point(13, 3), 8, ConsoleColor.White);
 
 		DrawingUtils.DrawBox(0, 5, 22, 3, "Command", ConsoleColor.Black, ConsoleColor.DarkRed, ConsoleColor.White);
 		Console.ForegroundColor = ConsoleColor.Gray;
-		Console.WriteAt("Horizontal: ", 1, 6);
-		Console.WriteAt("Depth     : ", 1, 7);
+		Console.WriteLinesAt("Horizontal: ", 1, 6);
+		Console.WriteLinesAt("Depth     : ", 1, 7);
 		CmdHorizontal = new FormatedPrintedValue(new Point(13, 6), 8, ConsoleColor.White);
 		CmdDepth = new FormatedPrintedValue(new Point(13, 7), 8, ConsoleColor.White);
 	}

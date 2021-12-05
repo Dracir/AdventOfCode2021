@@ -7,21 +7,21 @@ using static BinaryUtils;
 public class Day5 : DayBase
 {
 	private static Point offset = new Point(400, 475);
-	//private static Point offset = new Point(0, 0);
+	// private static Point offset = new Point(0, 0);
 	public override long Part1(string input)
 	{
 		var lines = InputParser.ListOfLines(input, '\n', ',', " -> ");
 		var size = new Point(1000, 1000);
 		var grid = new Grid<int>(0, new RangeInt(0, size.X), new RangeInt(0, size.Y));
-		var preview = new GridPreview<int>(GetPreviewChar, new RectInt(0, 0, 211, 51));
-		preview.Offset = offset;
-		preview.Grid = grid;
+		var renderer = new GridRenderer<int>(GetPreviewChar, new RectInt(0, 0, 211, 51));
+		renderer.Offset = offset;
+		renderer.Grid = grid;
 
 		var horizontalVerticalLines = lines.Where(x => x.IsHorizontal || x.IsVertical);
 		foreach (var line in horizontalVerticalLines)
 		{
 			grid.ApplyLine(line, AddValue);
-			preview.Update();
+			renderer.Update();
 		}
 
 		return grid.PointsAndValues().Count(x => x.Value >= 2);
@@ -31,11 +31,13 @@ public class Day5 : DayBase
 	{
 		var lines = InputParser.ListOfLines(input, '\n', ',', " -> ");
 		var size = new Point(1000, 1000);
+		// var size = new Point(10, 10);
 		var grid = new Grid<int>(0, new RangeInt(0, size.X), new RangeInt(0, size.Y));
-		var preview = new GridPreview<int>(GetPreviewChar, new RectInt(0, 0, 211, 51));
+		var preview = new GridRenderer<int>(GetPreviewChar, new RectInt(0, 0, 211, 51));
+		// var preview = new GridRenderer<int>(GetPreviewChar, new RectInt(11, 11, 10, 10));
 		preview.Offset = offset;
 		preview.Grid = grid;
-		preview.GetTileColor = GetTileColor;
+		preview._GetTileColor = GetTileColor;
 
 		foreach (var line in lines)
 		{

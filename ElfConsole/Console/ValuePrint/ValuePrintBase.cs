@@ -34,7 +34,7 @@ public abstract class ValuePrintBase
 			value = value.ToString().Substring(0, width);
 
 		// Console.ForegroundColor = ConsoleManager.Skin.HeaderValueColor;
-		ElfConsole.WriteAt(value, Position.X, Position.Y);
+		ElfConsole.WriteLinesAt(value, Position.X, Position.Y);
 		Console.ResetColor();
 
 		ElfConsole.Position = p;

@@ -30,7 +30,7 @@ class Program
 		do
 		{
 			var consoleStr = _useConsole ? "[C] Stop Output" : "[C] Use Output";
-			Console.WriteAt($"[←]Previous  [→]Next  [↩]Run  [1]Part 1  [2]Part 2  {consoleStr}  [ESC]Quit", 2, Console.Height - 2);
+			Console.WriteLinesAt($"[←]Previous  [→]Next  [↩]Run  [1]Part 1  [2]Part 2  {consoleStr}  [ESC]Quit", 2, Console.Height - 2);
 			var userInput = Console.ReadKey();
 			if (userInput.Key == ConsoleKey.D1)
 			{
@@ -128,7 +128,7 @@ class Program
 		var m = stopwatch.Elapsed.Minutes > 0 ? $"{stopwatch.Elapsed.Minutes}m" : "";
 		var s = stopwatch.Elapsed.Seconds > 0 ? $"{stopwatch.Elapsed.Seconds}s" : "";
 		var ms = stopwatch.Elapsed.Milliseconds > 0 ? $"{stopwatch.Elapsed.Milliseconds}ms" : "";
-		Console.WriteAt($"Time : {m}{s}{ms}", 2, Console.Height - 1);
-		Console.WriteAt($"Answer : {answer}", 40, Console.Height - 1);
+		Console.WriteLinesAt($"Time : {m}{s}{ms}", 2, Console.Height - 1);
+		Console.WriteLinesAt($"Answer : {answer}", 40, Console.Height - 1);
 	}
 }
