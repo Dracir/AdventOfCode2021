@@ -113,6 +113,30 @@ public static class InputParser
 		return grid;
 	}
 
+	/*----------Line------------*/
+	// 0,9 -> 5,9 : ListOfLines(str, '\n', ',' ," -> ")
+	public static List<Line> ListOfLines(string str, char lineSeparator, char xySeperator, string pointsSeparator)
+	{
+		var lines = new List<Line>();
+
+		var strLines = str.Split(lineSeparator);
+		foreach (var line in strLines)
+		{
+			var pts = line.Split(pointsSeparator);
+			var a = APoint(pts[0], xySeperator);
+			var b = APoint(pts[1], xySeperator);
+			lines.Add(new Line(a, b));
+		}
+		return lines;
+	}
+
+	public static Point APoint(string str, char xySeperator)
+	{
+		var splited = str.Split(xySeperator);
+		return new Point(int.Parse(splited[0]), int.Parse(splited[1]));
+	}
+
+
 	// -------------------------------------------
 	/**
 	Exemple: 
@@ -169,8 +193,8 @@ public static class InputParser
 	public static GrowingGrid<char> ReadGrowingGrid(string input, char lineseparator, char defaultValue)
 	{
 		var grid = ParseCharGrid(input, lineseparator);
-		var xRange = new Point(0, grid.GetLength(0));
-		var yRange = new Point(0, grid.GetLength(1));
+		var xRange = new RangeInt(0, grid.GetLength(0));
+		var yRange = new RangeInt(0, grid.GetLength(1));
 		var growingGrid = new GrowingGrid<char>(defaultValue, xRange, yRange, grid.Length, true, true);
 		growingGrid.AddGrid(0, 0, grid, GridAxes.XY);
 		return growingGrid;

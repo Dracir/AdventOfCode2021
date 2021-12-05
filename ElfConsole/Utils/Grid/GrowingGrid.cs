@@ -49,7 +49,7 @@ public class GrowingGrid<T> : IGrid<T>
 
 	public Action<GrowingGridEvent>? OnGridGrown;
 
-	public GrowingGrid(T defaultValue, Point xRange, Point yRange, int growthIncrement, bool growsOnRead = true, bool growsOnWrite = true)
+	public GrowingGrid(T defaultValue, RangeInt xRange, RangeInt yRange, int growthIncrement, bool growsOnRead = true, bool growsOnWrite = true)
 	{
 		_grid = new Grid<T>(defaultValue, xRange, yRange);
 		_defaultValue = defaultValue;
@@ -67,8 +67,8 @@ public class GrowingGrid<T> : IGrid<T>
 
 		int xIndex = axes == GridAxes.YX ? 1 : 0;
 		int yIndex = axes == GridAxes.YX ? 0 : 1;
-		var xRange = new Point(0, startingGrid.GetLength(xIndex) - 1);
-		var yRange = new Point(0, startingGrid.GetLength(yIndex) - 1);
+		var xRange = new RangeInt(0, startingGrid.GetLength(xIndex) - 1);
+		var yRange = new RangeInt(0, startingGrid.GetLength(yIndex) - 1);
 
 		_grid = new Grid<T>(defaultValue, xRange, yRange);
 
@@ -137,7 +137,7 @@ public class GrowingGrid<T> : IGrid<T>
 
 	private void GrowGrid(int up, int right, int down, int left)
 	{
-		var newGrid = new Grid<T>(_defaultValue, new Point(_grid.MinX - left, _grid.MaxX + right), new Point(_grid.MinY - down, _grid.MaxY + up));
+		var newGrid = new Grid<T>(_defaultValue, new RangeInt(_grid.MinX - left, _grid.MaxX + right), new RangeInt(_grid.MinY - down, _grid.MaxY + up));
 
 		for (int x = _grid.MinX; x <= _grid.MaxX; x++)
 			for (int y = _grid.MinY; y <= _grid.MaxY; y++)

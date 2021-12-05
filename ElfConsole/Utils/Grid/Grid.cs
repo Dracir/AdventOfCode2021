@@ -23,6 +23,7 @@ public class Grid<T> : IGrid<T>
 	public int UsedMaxX => usedMaxX;
 	public int UsedMaxY => usedMaxY;
 
+
 	public int MinX => -OffsetX;
 	public int MinY => -OffsetY;
 	public int MaxX => -OffsetX + FullWidth - 1;
@@ -38,16 +39,18 @@ public class Grid<T> : IGrid<T>
 
 	protected T DefaultValue;
 
-	public Grid(T defaultValue, Point xRange, Point yRange)
+	public Grid(T defaultValue, RangeInt xRange, RangeInt yRange)
 	{
 		this.DefaultValue = defaultValue;
-		_offsetX = -xRange.X;
-		_offsetY = -yRange.X;
+		_offsetX = -xRange.Min;
+		_offsetY = -yRange.Min;
 		usedMinX = _offsetX;
 		usedMaxX = _offsetX;
 		usedMinY = _offsetY;
 		usedMaxY = _offsetY;
-		Values = new T[xRange.Y - xRange.X + 1, yRange.Y - yRange.X + 1];
+		Values = new T[xRange.Max - xRange.Min + 1, yRange.Max - yRange.Min + 1];
+		foreach (var item in PointsAndValues())
+			this[item.Point] = defaultValue;
 	}
 
 
@@ -195,21 +198,31 @@ public class Grid<T> : IGrid<T>
 
 	public static Grid<T> FromArray(T defaultValue, T[,] sourceGrid, GridAxes axes)
 	{
-		var xRange = new Point(0, 0);
-		var yRange = new Point(0, 0);
+		var xRange = new RangeInt(0, 0);
+		var yRange = new RangeInt(0, 0);
 		if (axes == GridAxes.XY)
 		{
-			xRange.Y = sourceGrid.GetLength(0);
-			yRange.Y = sourceGrid.GetLength(1);
+			xRange.Max = sourceGrid.GetLength(0);
+			yRange.Max = sourceGrid.GetLength(1);
 		}
 		else
 		{
-			xRange.Y = sourceGrid.GetLength(1);
-			yRange.Y = sourceGrid.GetLength(0);
+			xRange.Max = sourceGrid.GetLength(1);
+			yRange.Max = sourceGrid.GetLength(0);
 		}
 
 		var grid = new Grid<T>(defaultValue, xRange, yRange);
 		grid.AddGrid(0, 0, sourceGrid, axes);
 		return grid;
+	}
+
+
+
+	public void ApplyLine(Line line, Func<(T currentValue, Point position), T> valueChange)
+	{
+		foreach (var point in line.Points())
+		{
+			this[point] = valueChange((this[point], point));
+		}
 	}
 }

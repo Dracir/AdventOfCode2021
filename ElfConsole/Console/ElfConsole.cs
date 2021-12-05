@@ -11,6 +11,7 @@ public static class ElfConsole
 	private static int WriteLeft { get { return 0; } }
 	private static int WriteRight { get { return Width - 0; } }
 	private static int WriteTop { get { return 0; } }
+	private static int WriteBottom { get { return Height - 0; } }
 	private static int WriteHeight { get { return Height - WriteTop; } }
 	private static int WriteWidth { get { return Width; } }
 
@@ -24,30 +25,30 @@ public static class ElfConsole
 		}
 	}
 
-	private static ConsoleColor CurrentForegroundColor;
+	private static ConsoleColor _currentForegroundColor;
 	public static ConsoleColor ForegroundColor
 	{
 		get => Console.ForegroundColor;
 		set
 		{
-			if (CurrentForegroundColor == value)
+			if (_currentForegroundColor == value)
 				return;
 			Console.ForegroundColor = value;
-			CurrentForegroundColor = value;
+			_currentForegroundColor = value;
 		}
 	}
 
 
-	private static ConsoleColor CurrentBackgroundColor;
+	private static ConsoleColor _currentBackgroundColor;
 	public static ConsoleColor BackgroundColor
 	{
 		get => Console.BackgroundColor;
 		set
 		{
-			if (CurrentBackgroundColor == value)
+			if (_currentBackgroundColor == value)
 				return;
 			Console.BackgroundColor = value;
-			CurrentBackgroundColor = value;
+			_currentBackgroundColor = value;
 		}
 	}
 
@@ -56,6 +57,24 @@ public static class ElfConsole
 		BackgroundColor = ConsoleColor.Black;
 		ForegroundColor = ConsoleColor.White;
 	}
+
+
+	private static Stack<ConsoleColor> _backgroundColorStack = new Stack<ConsoleColor>();
+	private static Stack<ConsoleColor> _foregroundColorStack = new Stack<ConsoleColor>();
+	public static void StackCurrentColor()
+	{
+		_backgroundColorStack.Push(_currentBackgroundColor);
+		_foregroundColorStack.Push(_currentForegroundColor);
+	}
+
+	public static void UnStackCurrentColor()
+	{
+		if (_backgroundColorStack.Count == 0)
+			return;
+		BackgroundColor = _backgroundColorStack.Pop();
+		ForegroundColor = _foregroundColorStack.Pop();
+	}
+
 
 	public static void WriteAtLine(string value, int line, int linesWidth = 0) => WriteAt(value, 0, line, linesWidth);
 
@@ -82,7 +101,10 @@ public static class ElfConsole
 
 	public static void WriteAt(char value, int x, int y)
 	{
+		if (x >= WriteRight || y >= WriteBottom || x < 0 || y < 0)
+			return;
 		Position = new Point(WriteLeft + x, WriteTop + y);
+		File.AppendAllText("drawn.txt", $"({x},{y}) : {value}\n");
 		Console.Write(value);
 	}
 
@@ -90,6 +112,8 @@ public static class ElfConsole
 	{
 		var text = value;
 		if (x >= WriteRight)
+			return;
+		if (y >= WriteBottom)
 			return;
 		if (x + text.Length > WriteRight)
 			text = text.Substring(WriteRight - x - 1) + '…';
