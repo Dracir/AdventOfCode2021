@@ -8,6 +8,7 @@ public class GridRenderer<T>
 	public IGrid<T>? Grid;
 	private Func<T, char> _getTilePreview;
 	public Func<T, ConsoleColor>? _GetTileColor;
+	public Func<T, Point, ConsoleColor>? _GetTileColorWithPosition;
 	public char EmptyChar = ' ';
 	public Point Offset;
 
@@ -68,6 +69,16 @@ public class GridRenderer<T>
 		if (_GetTileColor != null)
 		{
 			var tileColor = _GetTileColor(tileValue);
+			if (_renderingColor[x, y] != tileColor)
+			{
+				if (!_changedPosition.Contains(new Point(x, y)))
+					_changedPosition.Add(new Point(x, y));
+				_renderingColor[x, y] = tileColor;
+			}
+		}
+		if (_GetTileColorWithPosition != null)
+		{
+			var tileColor = _GetTileColorWithPosition(tileValue, new Point(x, y));
 			if (_renderingColor[x, y] != tileColor)
 			{
 				if (!_changedPosition.Contains(new Point(x, y)))

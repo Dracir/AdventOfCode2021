@@ -6,9 +6,11 @@ using Console = ElfConsole;
 class Program
 {
 
-	private static int _currentDay = 7;
+	private static int _currentDay = 9;
 	private static int _currentPart = 2;
 	private static bool _useConsole = true;
+	private static bool _autoStart = true;
+
 
 	private static DayBase[] _days = new DayBase[26];
 
@@ -26,6 +28,11 @@ class Program
 
 		UpdateHeader(_currentDay, _days[_currentDay], _currentPart);
 		_days[_currentDay] = NewDay(_currentDay);
+		if (_autoStart)
+		{
+			_autoStart = false;
+			StartDay(_currentDay);
+		}
 
 		do
 		{
@@ -83,12 +90,12 @@ class Program
 		5 => new Day5(),
 		6 => new Day6(),
 		7 => new Day7(),
-		/*8 => new Day8(),
+		8 => new Day8(),
 		9 => new Day9(),
 		10 => new Day10(),
 		11 => new Day11(),
 		12 => new Day12(),
-		13 => new Day13(),
+		/*13 => new Day13(),
 		14 => new Day14(),
 		15 => new Day15(),
 		16 => new Day16(),

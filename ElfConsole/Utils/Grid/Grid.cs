@@ -142,16 +142,18 @@ public class Grid<T> : IGrid<T>
 
 	public IEnumerable<Point> AreaAround(Point pt, int manhattanDistance)
 	{
-
 		int x1 = Math.Max(usedMinX, pt.X - manhattanDistance);
 		int y1 = Math.Max(usedMinY, pt.Y - manhattanDistance);
-		int x2 = Math.Max(usedMaxX, pt.X + manhattanDistance);
-		int y2 = Math.Max(usedMaxY, pt.Y + manhattanDistance);
+		int x2 = Math.Min(usedMaxX, pt.X + manhattanDistance);
+		int y2 = Math.Min(usedMaxY, pt.Y + manhattanDistance);
 
 		for (int x = x1; x <= x2; x++)
 			for (int y = y1; y <= y2; y++)
-				if (x + y <= manhattanDistance)
+			{
+				var distance = Math.Abs(pt.X - x) + Math.Abs(pt.Y - y);
+				if (distance <= manhattanDistance)
 					yield return new Point(x, y);
+			}
 	}
 
 	public IEnumerable<int> ColumnIndexs()

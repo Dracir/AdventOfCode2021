@@ -106,7 +106,7 @@ public static class InputParser
 			else
 			{
 				for (int x = 0; x < line.Length; x++)
-					grid[x, y] = line[x];
+					grid[x, y] = line[x] - '0';
 			}
 		}
 
