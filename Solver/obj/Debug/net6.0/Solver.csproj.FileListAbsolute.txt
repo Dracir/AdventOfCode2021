@@ -4,7 +4,6 @@
 /home/richard/Workspace/AdventOfCode2021/Solver/bin/Debug/net6.0/Solver.dll
 /home/richard/Workspace/AdventOfCode2021/Solver/bin/Debug/net6.0/ref/Solver.dll
 /home/richard/Workspace/AdventOfCode2021/Solver/bin/Debug/net6.0/Solver.pdb
-/home/richard/Workspace/AdventOfCode2021/Solver/obj/Debug/net6.0/Solver.csproj.AssemblyReference.cache
 /home/richard/Workspace/AdventOfCode2021/Solver/obj/Debug/net6.0/Solver.GeneratedMSBuildEditorConfig.editorconfig
 /home/richard/Workspace/AdventOfCode2021/Solver/obj/Debug/net6.0/Solver.AssemblyInfoInputs.cache
 /home/richard/Workspace/AdventOfCode2021/Solver/obj/Debug/net6.0/Solver.AssemblyInfo.cs
@@ -16,3 +15,4 @@
 /home/richard/Workspace/AdventOfCode2021/Solver/bin/Debug/net6.0/ElfConsole.dll
 /home/richard/Workspace/AdventOfCode2021/Solver/bin/Debug/net6.0/ElfConsole.pdb
 /home/richard/Workspace/AdventOfCode2021/Solver/obj/Debug/net6.0/Solver.csproj.CopyComplete
+/home/richard/Workspace/AdventOfCode2021/Solver/obj/Debug/net6.0/Solver.csproj.AssemblyReference.cache

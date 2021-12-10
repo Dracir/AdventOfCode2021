@@ -5,12 +5,13 @@ using Console = ElfConsole;
 public static class DrawingUtils
 {
 
-	public const int TITLE_START_X = 3;
+	public const int TITLE_START_X = 2;
 
 	// h : includes top and bottom row
-	public static void DrawBox(int x, int y, int w, int h, string title, ConsoleColor backgroundColor, ConsoleColor foregroundColor, ConsoleColor titleColor)
+	public static void DrawBox(int x, int y, int w, int h, string title, ConsoleColor? backgroundColor, ConsoleColor foregroundColor, ConsoleColor titleColor)
 	{
-		Console.BackgroundColor = backgroundColor;
+		if (backgroundColor.HasValue)
+			Console.BackgroundColor = backgroundColor.Value;
 		Console.ForegroundColor = foregroundColor;
 
 		var strBuilder = new StringBuilder(w);

@@ -43,11 +43,14 @@ public class Day8 : DayBase
 
 	public override long Part2(string input)
 	{
+		var console = new Day8Console.P2();
 		var displays = Parse(input);
 		var total = 0L;
 		foreach (var display in displays)
 		{
+			console.SetDisplay(display);
 			var configuration = GetConfiguration(display);
+			console.SetConfiguration(configuration);
 			var output = GetOutput(configuration, display);
 			total += output;
 		}
@@ -178,7 +181,7 @@ public class Day8 : DayBase
 		return displays;
 	}
 
-	record DisplayData(List<string> Patterns, List<string> OutputValue);
+	public record DisplayData(List<string> Patterns, List<string> OutputValue);
 
-	record Configuration(Dictionary<char, char> SegmentMapping, Dictionary<int, string> NumberSegments);
+	public record Configuration(Dictionary<char, char> SegmentMapping, Dictionary<int, string> NumberSegments);
 }

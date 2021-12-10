@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class ArrayPrintedValue
 {
+	private readonly Point _position;
 	private int _width;
 	private FormatedPrintedValue[] _printedValues;
 

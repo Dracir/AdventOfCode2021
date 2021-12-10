@@ -6,7 +6,7 @@ using Console = ElfConsole;
 class Program
 {
 
-	private static int _currentDay = 9;
+	private static int _currentDay = 8;
 	private static int _currentPart = 2;
 	private static bool _useConsole = true;
 	private static bool _autoStart = true;
@@ -16,7 +16,6 @@ class Program
 
 	static void Main(string[] args)
 	{
-
 		//YearFileCreator.CreateYear();
 		RunSuperConsole();
 
