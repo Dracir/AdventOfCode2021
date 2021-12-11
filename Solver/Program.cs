@@ -6,7 +6,7 @@ using Console = ElfConsole;
 class Program
 {
 
-	private static int _currentDay = 8;
+	private static int _currentDay = 11;
 	private static int _currentPart = 2;
 	private static bool _useConsole = true;
 	private static bool _autoStart = true;
