@@ -6,8 +6,8 @@ using Console = ElfConsole;
 class Program
 {
 
-	private static int _currentDay = 12;
-	private static int _currentPart = 2;
+	private static int _currentDay = 13;
+	private static int _currentPart = 1;
 	private static bool _useConsole = true;
 	private static bool _autoStart = true;
 
@@ -94,9 +94,9 @@ class Program
 		10 => new Day10(),
 		11 => new Day11(),
 		12 => new Day12(),
-		/*13 => new Day13(),
+		13 => new Day13(),
 		14 => new Day14(),
-		15 => new Day15(),
+		/*15 => new Day15(),
 		16 => new Day16(),
 		17 => new Day17(),
 		18 => new Day18(),

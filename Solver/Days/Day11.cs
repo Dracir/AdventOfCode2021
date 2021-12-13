@@ -10,7 +10,7 @@ public class Day11 : DayBase
 	{
 		var values = InputParser.ParseIntGrid(input, '\n', null);
 		var grid = new Grid<int>(0, new RangeInt(0, 9), new RangeInt(0, 9));
-		grid.AddGrid(0, 0, values, GridAxes.XY);
+		grid.AddGrid(0, 0, values, GridPlane.XY);
 		var gridRenderer = new GridRenderer<int>(x => x.ToString()[0], new RectInt(0, 0, 10, 10));
 		gridRenderer.Grid = grid;
 		gridRenderer._GetTileColor = (x) => x == 0 ? ConsoleColor.White : ConsoleColor.Gray;
@@ -63,7 +63,7 @@ public class Day11 : DayBase
 	{
 		var values = InputParser.ParseIntGrid(input, '\n', null);
 		var grid = new Grid<int>(0, new RangeInt(0, 9), new RangeInt(0, 9));
-		grid.AddGrid(0, 0, values, GridAxes.XY);
+		grid.AddGrid(0, 0, values, GridPlane.XY);
 		var gridRenderer = new GridRenderer<int>(x => x.ToString()[0], new RectInt(0, 0, 10, 10));
 		gridRenderer.Grid = grid;
 		gridRenderer._GetTileColor = (x) => x == 0 ? ConsoleColor.White : ConsoleColor.Gray;

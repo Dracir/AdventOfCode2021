@@ -10,7 +10,7 @@ public class Day9 : DayBase
 	{
 		var inputGrid = InputParser.ParseIntGrid(input, '\n', null);
 		var grid = new Grid<int>(0, new RangeInt(0, inputGrid.GetLength(0) - 1), new RangeInt(0, inputGrid.GetLength(1) - 1));
-		grid.AddGrid(0, 0, inputGrid, GridAxes.XY);
+		grid.AddGrid(0, 0, inputGrid, GridPlane.XY);
 
 
 		Dictionary<Point, Point> lowestDirection = GetLowestDirections(grid);
@@ -28,7 +28,7 @@ public class Day9 : DayBase
 	{
 		var inputGrid = InputParser.ParseIntGrid(input, '\n', null);
 		var grid = new Grid<int>(0, new RangeInt(0, inputGrid.GetLength(0) - 1), new RangeInt(0, inputGrid.GetLength(1) - 1));
-		grid.AddGrid(0, 0, inputGrid, GridAxes.XY);
+		grid.AddGrid(0, 0, inputGrid, GridPlane.XY);
 
 		Dictionary<Point, Point> lowestDirection = GetLowestDirections(grid);
 

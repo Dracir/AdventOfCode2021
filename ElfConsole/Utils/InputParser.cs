@@ -22,6 +22,7 @@ public static class InputParser
 		else
 			return ListOfLong(input, ',');
 	}
+
 	public static string[] ListOfStrings(string input)
 	{
 		if (input.Contains("\n"))
@@ -137,6 +138,15 @@ public static class InputParser
 	}
 
 
+
+	public static List<Point> ListOfPoints(string str, char lineSeparator, char xySeperator)
+	{
+		return str.Split(lineSeparator)
+		.Select(x => APoint(x, xySeperator))
+		.ToList();
+	}
+
+
 	// -------------------------------------------
 	/**
 	Exemple: 
@@ -196,7 +206,7 @@ public static class InputParser
 		var xRange = new RangeInt(0, grid.GetLength(0));
 		var yRange = new RangeInt(0, grid.GetLength(1));
 		var growingGrid = new GrowingGrid<char>(defaultValue, xRange, yRange, grid.Length, true, true);
-		growingGrid.AddGrid(0, 0, grid, GridAxes.XY);
+		growingGrid.AddGrid(0, 0, grid, GridPlane.XY);
 		return growingGrid;
 	}
 

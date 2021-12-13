@@ -177,9 +177,9 @@ public class Grid<T> : IGrid<T>
 		return arr;
 	}
 
-	public void AddGrid(int leftX, int bottomY, T[,] grid, GridAxes axes)
+	public void AddGrid(int leftX, int bottomY, T[,] grid, GridPlane plane)
 	{
-		if (axes == GridAxes.XY)
+		if (plane == GridPlane.XY)
 		{
 			for (int x = 0; x < grid.GetLength(0); x++)
 				for (int y = 0; y < grid.GetLength(1); y++)
@@ -198,11 +198,11 @@ public class Grid<T> : IGrid<T>
 	public bool YInBound(int y) => y >= MinY && y <= MaxY;
 	public bool PointInBound(Point pt) => XInBound(pt.X) && YInBound(pt.Y);
 
-	public static Grid<T> FromArray(T defaultValue, T[,] sourceGrid, GridAxes axes)
+	public static Grid<T> FromArray(T defaultValue, T[,] sourceGrid, GridPlane plane)
 	{
 		var xRange = new RangeInt(0, 0);
 		var yRange = new RangeInt(0, 0);
-		if (axes == GridAxes.XY)
+		if (plane == GridPlane.XY)
 		{
 			xRange.Max = sourceGrid.GetLength(0);
 			yRange.Max = sourceGrid.GetLength(1);
@@ -214,7 +214,7 @@ public class Grid<T> : IGrid<T>
 		}
 
 		var grid = new Grid<T>(defaultValue, xRange, yRange);
-		grid.AddGrid(0, 0, sourceGrid, axes);
+		grid.AddGrid(0, 0, sourceGrid, plane);
 		return grid;
 	}
 
