@@ -9,7 +9,7 @@ public class Day12 : DayBase
 {
 	public override long Part1(string input)
 	{
-		var nodes = NewMethod(input);
+		var nodes = ParseInput(input);
 		var paths = 0;
 		foreach (var path in nodes["start"])
 			paths += GetPathsToEnd(nodes, path, new string[0], false);
@@ -19,7 +19,7 @@ public class Day12 : DayBase
 
 	public override long Part2(string input)
 	{
-		var nodes = NewMethod(input);
+		var nodes = ParseInput(input);
 		var paths = 0;
 		foreach (var path in nodes["start"])
 			paths += GetPathsToEnd(nodes, path, new string[0], true);
@@ -50,7 +50,7 @@ public class Day12 : DayBase
 		return paths;
 	}
 
-	private static Dictionary<string, List<string>> NewMethod(string input)
+	private static Dictionary<string, List<string>> ParseInput(string input)
 	{
 		Dictionary<string, List<string>> nodes = new Dictionary<string, List<string>>();
 

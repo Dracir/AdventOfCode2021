@@ -8,7 +8,7 @@ public class Day9 : DayBase
 {
 	public override long Part1(string input)
 	{
-		var inputGrid = InputParser.ParseIntGrid(input, '\n', null);
+		var inputGrid = InputParser.ParseInt2DArray(input, '\n', null);
 		var grid = new Grid<int>(0, new RangeInt(0, inputGrid.GetLength(0) - 1), new RangeInt(0, inputGrid.GetLength(1) - 1));
 		grid.AddGrid(0, 0, inputGrid, GridPlane.XY);
 
@@ -26,7 +26,7 @@ public class Day9 : DayBase
 
 	public override long Part2(string input)
 	{
-		var inputGrid = InputParser.ParseIntGrid(input, '\n', null);
+		var inputGrid = InputParser.ParseInt2DArray(input, '\n', null);
 		var grid = new Grid<int>(0, new RangeInt(0, inputGrid.GetLength(0) - 1), new RangeInt(0, inputGrid.GetLength(1) - 1));
 		grid.AddGrid(0, 0, inputGrid, GridPlane.XY);
 

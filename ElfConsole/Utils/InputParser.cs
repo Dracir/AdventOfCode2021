@@ -51,7 +51,7 @@ public static class InputParser
 	//..#.#...#.#
 	//.#...##..#.
 	// trueCharacter = #
-	public static bool[,] ParseBoolGrid(string input, char separator, char trueCharacter)
+	public static bool[,] ParseBool2DArray(string input, char separator, char trueCharacter)
 	{
 		var lines = input.Split(separator);
 		var grid = new bool[lines.Length, lines[0].Length];
@@ -69,7 +69,7 @@ public static class InputParser
 	//.#....#..#.
 	//..#.#...#.#
 	//.#...##..#.
-	public static char[,] ParseCharGrid(string input, char lineSeparator)
+	public static char[,] ParseChar2DArray(string input, char lineSeparator)
 	{
 		var lines = input.Split(lineSeparator);
 		var grid = new char[lines[0].TrimEnd().Length, lines.Length];
@@ -90,7 +90,7 @@ public static class InputParser
 	//18  8 23 26 20
 	//22 11 13  6  5
 	//2  0 12  3  7
-	public static int[,] ParseIntGrid(string input, char lineSeparator, char? colSeparator)
+	public static int[,] ParseInt2DArray(string input, char lineSeparator, char? colSeparator)
 	{
 		var lines = input.Split(lineSeparator);
 		var grid = new int[lines[0].TrimEnd().Length, lines.Length];
@@ -200,9 +200,19 @@ public static class InputParser
 
 	// -------------------------------------------
 
+	public static Grid<int> ParseIntGrid(string input, char lineseparator = '\n', char? colSeparator = null)
+	{
+		var values = InputParser.ParseInt2DArray(input, '\n', null);
+		var grid = new Grid<int>(0, new RangeInt(0, values.GetLength(0)), new RangeInt(0, values.GetLength(1)));
+		grid.AddGrid(0, 0, values, GridPlane.XY);
+		return grid;
+	}
+
+
+
 	public static GrowingGrid<char> ReadGrowingGrid(string input, char lineseparator, char defaultValue)
 	{
-		var grid = ParseCharGrid(input, lineseparator);
+		var grid = ParseChar2DArray(input, lineseparator);
 		var xRange = new RangeInt(0, grid.GetLength(0));
 		var yRange = new RangeInt(0, grid.GetLength(1));
 		var growingGrid = new GrowingGrid<char>(defaultValue, xRange, yRange, grid.Length, true, true);

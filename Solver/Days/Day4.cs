@@ -95,7 +95,7 @@ public class Day4 : DayBase
 		var boardsSelection = new List<bool[,]>();
 		for (int i = 1; i < sections.Length; i++)
 		{
-			boards.Add(InputParser.ParseIntGrid(sections[i].Replace("  ", " ").Replace("\n ", "\n").Trim(), '\n', ' '));
+			boards.Add(InputParser.ParseInt2DArray(sections[i].Replace("  ", " ").Replace("\n ", "\n").Trim(), '\n', ' '));
 			boardsSelection.Add(new bool[5, 5]);
 		}
 
