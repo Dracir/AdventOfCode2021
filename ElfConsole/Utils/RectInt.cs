@@ -7,7 +7,7 @@ public struct RectInt
 	public int Left => X;
 	public int Bottom => Y;
 	public int Top => Y + Height;
-	public int Righ => X + Width;
+	public int Right => X + Width;
 
 	public RangeInt WidthRange => new RangeInt(0, Width);
 	public RangeInt HeightRange => new RangeInt(0, Height);
@@ -19,4 +19,8 @@ public struct RectInt
 		Width = w;
 		Height = h;
 	}
+
+	public bool Contains(Point point) => Contains(point.X, point.Y);
+
+	public bool Contains(int x, int y) => x >= X && x <= X + Width && y >= Y && y <= Y + Height;
 }

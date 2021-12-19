@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 public static class InputParser
@@ -218,6 +219,58 @@ public static class InputParser
 		var growingGrid = new GrowingGrid<char>(defaultValue, xRange, yRange, grid.Length, true, true);
 		growingGrid.AddGrid(0, 0, grid, GridPlane.XY);
 		return growingGrid;
+	}
+
+
+	public record BinaryTreeParams<T>(char nodeStart, char nodeSeparator, char nodeEnd, Func<string, T> parseLeaf);
+
+	// Exemple1: [9,[8,7]]
+	// Exemple2:[[[[[4,3],4],4],[7,[[8,4],9]]],[1,1]]
+	// ParseBinaryTreeNode(inputStr, '[', ',', ']', (str)=> int32.Parse(str))
+	public static BinaryTreeNodeBase<T> ParseBinaryTreeNode<T>(string input, char nodeStart, char nodeSeparator, char nodeEnd, Func<string, T> parseLeaf)
+	{
+		int pointer = 0;
+		var btp = new BinaryTreeParams<T>(nodeStart, nodeSeparator, nodeEnd, parseLeaf);
+		return ParseBinaryTreeNode<T>(input, ref pointer, btp);
+	}
+
+	private static BinaryTreeNodeBase<T> ParseBinaryTreeNode<T>(string inputStr, ref int pointer, BinaryTreeParams<T> btp)
+	{
+		var c = inputStr[pointer];
+		if (c == btp.nodeStart)
+		{ // Is a pair
+			pointer++;
+			var left = ParseBinaryTreeNode<T>(inputStr, ref pointer, btp);
+
+			if (inputStr[pointer++] != btp.nodeSeparator)
+				throw new Exception($"Expected a {btp.nodeSeparator} at {pointer}");
+
+			var right = ParseBinaryTreeNode<T>(inputStr, ref pointer, btp);
+
+			if (inputStr[pointer++] != btp.nodeEnd)
+				throw new Exception($"Expected a {btp.nodeEnd} at {pointer}");
+
+			var newNode = new BinaryTreeNode<T>(null, left, right);
+			left.Parent = newNode;
+			right.Parent = newNode;
+			return newNode;
+		}
+		else
+			return ParseBinaryTreeLeaf<T>(inputStr, ref pointer, btp);
+	}
+
+
+
+	private static BinaryTreeNodeBase<T> ParseBinaryTreeLeaf<T>(string inputStr, ref int pointer, BinaryTreeParams<T> btp)
+	{
+		var str = new StringBuilder();
+		do
+		{
+			str.Append(inputStr[pointer++]);
+		} while (inputStr[pointer] != btp.nodeEnd && inputStr[pointer] != btp.nodeSeparator);
+
+		var value = btp.parseLeaf(str.ToString());
+		return new BinaryTreeLeaf<T>(null, value);
 	}
 
 	/*public static Tree ReadTree(string input, char lineSeparator, char linkSeparator)

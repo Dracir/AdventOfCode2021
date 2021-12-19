@@ -97,9 +97,15 @@ public static class IEnumerableExtentions
 	}
 
 
-	public static List<Tuple<T, T>> PairUp<T>(this IEnumerable<T> enumeration)
+	public static List<Tuple<T, T>> PairUpTriangle<T>(this IEnumerable<T> enumeration)
 	{
 		return enumeration.Select((item, index) => new { item, index }).GroupBy(c => c.index - c.index % 2).Select(group => Tuple.Create<T, T>(group.First().item, group.ToArray()[1].item)).ToList();
+	}
+
+	public static List<(T, T)> PairUpSquare<T>(this IEnumerable<T> enumeration)
+	{
+		return enumeration.SelectMany(row => enumeration.Select(col => (row, col)))
+			.ToList();
 	}
 
 	public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
