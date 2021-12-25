@@ -6,6 +6,7 @@ using System.Linq;
 
 public static class GameOfLife
 {
+	//2020
 	public static Dictionary<int[], T> DoStepOfLife<T>(MultiDimentionalArray<T> array, StepOfLifeData<T> data)
 	{
 		var expendingAmount = data.Expending ? 1 : 0;
