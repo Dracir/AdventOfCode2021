@@ -1,4 +1,8 @@
-Solver/obj/*
-Test/obj/*
-Solver/bin/*
-Test/bin/*
+/Solver/obj
+/Solver/bin
+/Tests/obj
+/Tests/bin
+/ElfConsole/bin
+/ElfConsole/obj
+/Solver/drawn.txt
+
