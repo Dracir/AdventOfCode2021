@@ -6,10 +6,10 @@ using Console = ElfConsole;
 class Program
 {
 
-	private static int _currentDay = 25;
-	private static int _currentPart = 1;
+	private static int _currentDay = 23;
+	private static int _currentPart = 2;
 	private static bool _useConsole = true;
-	private static bool _autoStart = true;
+	private static bool _autoStart = false;
 
 
 	private static DayBase[] _days = new DayBase[26];

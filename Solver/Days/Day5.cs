@@ -33,7 +33,7 @@ public class Day5 : DayBase
 		var size = new Point(1000, 1000);
 		// var size = new Point(10, 10);
 		var grid = new Grid<int>(0, new RangeInt(0, size.X), new RangeInt(0, size.Y));
-		var preview = new GridRenderer<int>(GetPreviewChar, new RectInt(0, 0, 211, 51));
+		var preview = new GridRenderer<int>(GetPreviewChar, new RectInt(0, 0, 100, 51));
 		// var preview = new GridRenderer<int>(GetPreviewChar, new RectInt(11, 11, 10, 10));
 		preview.Offset = offset;
 		preview.Grid = grid;

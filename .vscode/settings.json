@@ -1,0 +1,6 @@
+{
+	"dotnet-test-explorer.testProjectPath": "**/*Tests.@(csproj|vbproj|fsproj)",
+	"dotnet-test-explorer.autoWatch": true,
+	"dotnet-test-explorer.treeMode": "full",
+	"todo-tree.tree.showCountsInTree": true
+}
